@@ -27,30 +27,30 @@ export function Home(){
 
   return (
     <Fragment>
-      <SafeAreaView style={style.container}>
-        <Text style={style.title}>{greetings}, <Text style={{color:'blue'}}>Igor Barros.</Text></Text>
+        <View style={style.container}>
+          <Text style={style.title}>{greetings}, <Text style={{color:'blue'}}>Igor Barros.</Text></Text>
 
-        <TextInput
-          style={style.input}
-          placeholder="New skill"
-          placeholderTextColor="#555"
-          onChangeText={setNewSkill}
-        />
+          <TextInput
+            style={style.input}
+            placeholder="New skill"
+            placeholderTextColor="#555"
+            onChangeText={setNewSkill}
+          />
 
-        <Button handleAddNewSkill={handleAddNewSkill}/>
+          <Button handleAddNewSkill={handleAddNewSkill}/>
 
-        <Text  style={[style.title, {marginVertical: 50}]}>MySkill</Text>
+          <Text  style={[style.title, {marginVertical: 50}]}>MySkill</Text>
 
-        <FlatList
-          data={mySkill}
-          keyExtractor={item => Math.random().toString(36).substr(2, 9)}
-          renderItem={({item}) => (
-            <SkillCard skill={item}/>
-         )}
+          <FlatList
+            data={mySkill}
+            keyExtractor={item => Math.random().toString(36).substr(2, 9)}
+            renderItem={({item}) => (
+              <SkillCard skill={item}/>
+          )}
 
-        />
+          />
 
-      </SafeAreaView>
+        </View>
     </Fragment>
   )};
 
@@ -58,14 +58,14 @@ const style = StyleSheet.create({
   container:{
     flex:1,
     backgroundColor: '#121015',
-    paddingHorizontal: 30,
-    paddingVertical: 70
+    paddingHorizontal: 20,
+    paddingVertical: 20
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     color: 'white',
-    marginBottom : 2
+    marginBottom : 5
   },
   input: {
     backgroundColor: '#1F1E25',
