@@ -22,6 +22,12 @@ export function Home(){
     setMySkill(oldState => [...oldState, data]);
   }
 
+  function handleRemoveSkill(id: string){
+    setMySkill(oldState => oldState.filter(
+      skill => skill.id !== id
+    ))
+  }
+
   useEffect(() => {
     const currentHour =  new Date().getHours();
 
@@ -56,7 +62,10 @@ export function Home(){
             //keyExtractor={item => Math.random().toString(36).substr(2, 9)}
             keyExtractor={item => item.id}
             renderItem={({item}) => (
-              <SkillCard skill={item.name}/>
+              <SkillCard
+                skill={item.name}
+                onPress={() => handleRemoveSkill(item.id)}
+              />
           )}
 
           />
