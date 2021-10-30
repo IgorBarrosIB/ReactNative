@@ -4,51 +4,34 @@ import { Button } from "../components/Button";
 import { SkillCard } from "../components/SkillCard";
 
 export function Home(){
-  const [newSkill, setNewSkill] = useState('');
-  const [mySkill, setMySkill] = useState([]);
-  const [greetings, setGreetings] = useState('');
+  const [newNome, setNome] = useState('');
+  const [newTelefone, setTelefone] = useState('');
 
-  function handleAddNewSkill(){
-    setMySkill(oldState => [...oldState, newSkill]);
-  }
-
-  useEffect(() => {
-    const currentHour =  new Date().getHours();
-
-    if(currentHour < 12){
-     setGreetings('Good morning');
-    }else if(currentHour >= 12 && currentHour < 18 ){
-      setGreetings('Good afternoon');
-    }else{
-      setGreetings('Good night');
-    }
-
-  }, [])
 
   return (
     <Fragment>
         <View style={style.container}>
-          <Text style={style.title}>{greetings}, <Text style={{color:'blue'}}>Igor Barros.</Text></Text>
+          <Text style={style.title}>Cadastro de usúario</Text>
+
+          <Text style={style.fildTitle}>Nome Completo:</Text>
 
           <TextInput
             style={style.input}
-            placeholder="New skill"
+            placeholder=""
             placeholderTextColor="#555"
-            onChangeText={setNewSkill}
+            onChangeText={setNome}
           />
 
-          <Button handleAddNewSkill={handleAddNewSkill}/>
+          <Text style={style.fildTitle}>Telefone:</Text>
 
-          <Text  style={[style.title, {marginVertical: 50}]}>MySkill</Text>
-
-          <FlatList
-            data={mySkill}
-            keyExtractor={item => Math.random().toString(36).substr(2, 9)}
-            renderItem={({item}) => (
-              <SkillCard skill={item}/>
-          )}
-
+          <TextInput
+            style={style.input}
+            placeholder=""
+            placeholderTextColor="#555"
+            onChangeText={setTelefone}
           />
+
+          <Button/>
 
         </View>
     </Fragment>
@@ -65,23 +48,21 @@ const style = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: 'white',
-    marginBottom : 5
+    marginBottom : 15
   },
   input: {
     backgroundColor: '#1F1E25',
     color: '#FFF',
     fontSize: 18,
     padding: Platform.OS === 'ios' ? 15 : 10,
-    marginBottom: 30,
+    marginBottom: 10,
     borderRadius: 7
   },
-  rodape: {
-    alignSelf: 'center',
-    marginBottom: 20,
-    color: 'red'
-  },
-  greetings : {
-    color : '#FFF'
+  fildTitle: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom : 5
   },
 });
 
