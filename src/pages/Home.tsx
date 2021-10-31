@@ -1,5 +1,15 @@
 import React, {Fragment, useState, useEffect} from "react";
-import {Text, View, StyleSheet, SafeAreaView, TextInput, Platform, TouchableOpacity, FlatList} from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  SafeAreaView,
+  TextInput,
+  Platform,
+  TouchableOpacity,
+  FlatList,
+}from "react-native";
+
 import { Button } from "../components/Button";
 import { SkillCard } from "../components/SkillCard";
 
@@ -18,6 +28,12 @@ export function Home(){
       id: String(new Date().getTime()),
       name: newSkill,
     }
+
+    /*
+    CTRL + M = Abrir o comando de DEBUG
+    Ir no console do navegador
+    console.log("New Skill",data);
+    */
 
     setMySkill(oldState => [...oldState, data]);
   }
