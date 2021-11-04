@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/core";
 import React, {Fragment, useState, useEffect} from "react";
 import {
   Text,
@@ -20,18 +19,16 @@ interface SkillData {
   name: string;
 }
 
-export function Home(){
+export function Skills(){
   const [newSkill, setNewSkill] = useState('');
   const [mySkill, setMySkill] = useState<SkillData[]>([]);
   const [greetings, setGreetings] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const navigation = useNavigation()
 
   function handleAddNewSkill(){
     if(email == "igorbarros@gmail.com" && senha == "123"){
-      navigation.navigate('Skills')
-     // Alert.alert("sucesso", "você será redirecionado")
+      Alert.alert("sucesso", "você será redirecionado")
     }else{
       Alert.alert("Error", "Por favor preencha os campos corretamente!")
     }
@@ -43,17 +40,11 @@ export function Home(){
 
   }
 
-  function password(){
-    navigation.navigate("Password", {email: email})
-
-  }
-
   function handleRemoveSkill(id: string){
     setMySkill(oldState => oldState.filter(
       skill => skill.id !== id
     ))
   }
-
 
   useEffect(() => {
     const currentHour =  new Date().getHours();
@@ -71,27 +62,8 @@ export function Home(){
   return (
     <Fragment>
         <View style={style.container}>
-          <Text style={style.title}>{greetings}, <Text style={{color:'blue'}}>Igor Barros.</Text></Text>
-
-          <TextInput
-            style={style.input}
-            placeholder="Email"
-            placeholderTextColor="#555"
-            onChangeText={setEmail}
-          />
-
-          <TextInput
-            style={style.input}
-            placeholder="senha"
-            placeholderTextColor="#555"
-            secureTextEntry
-            onChangeText={setSenha}
-          />
 
 
-
-          <Button title="Entrar" onPress={handleAddNewSkill}/>
-          <Button title="Esqueci minha senha" onPress={password}/>
 
         </View>
     </Fragment>
@@ -125,6 +97,6 @@ const style = StyleSheet.create({
   },
   greetings : {
     color : '#FFF'
-  }
+  },
 });
 
