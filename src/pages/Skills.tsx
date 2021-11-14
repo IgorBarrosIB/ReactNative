@@ -2,17 +2,10 @@ import React, {Fragment, useState, useEffect} from "react";
 import {
   Text,
   View,
-  Alert,
   StyleSheet,
-  SafeAreaView,
-  TextInput,
   Platform,
-  TouchableOpacity,
   FlatList,
 }from "react-native";
-
-import { Button } from "../components/Button";
-import { SkillCard } from "../components/SkillCard";
 
 interface SkillData {
   id: string;
@@ -20,31 +13,71 @@ interface SkillData {
 }
 
 export function Skills(){
-  const [newSkill, setNewSkill] = useState('');
-  const [mySkill, setMySkill] = useState<SkillData[]>([]);
   const [greetings, setGreetings] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
 
-  function handleAddNewSkill(){
-    if(email == "igorbarros@gmail.com" && senha == "123"){
-      Alert.alert("sucesso", "você será redirecionado")
-    }else{
-      Alert.alert("Error", "Por favor preencha os campos corretamente!")
-    }
-    /*
-    CTRL + M = Abrir o comando de DEBUG
-    Ir no console do navegador
-    console.log("New Skill",data);
-    */
+  const data =
+    [
+      {
+        "color": "black",
+        "category": "hue",
+        "type": "primary",
+        "code": {
+          "rgba": [255,255,255,1],
+          "hex": "#000"
+        }
+      },
+      {
+        "color": "white",
+        "category": "value",
+        "code": {
+          "rgba": [0,0,0,1],
+          "hex": "#FFF"
+        }
+      },
+      {
+        "color": "red",
+        "category": "hue",
+        "type": "primary",
+        "code": {
+          "rgba": [255,0,0,1],
+          "hex": "#FF0"
+        }
+      },
+      {
+        "color": "blue",
+        "category": "hue",
+        "type": "primary",
+        "code": {
+          "rgba": [0,0,255,1],
+          "hex": "#00F"
+        }
+      },
+      {
+        "color": "yellow",
+        "category": "hue",
+        "type": "primary",
+        "code": {
+          "rgba": [255,255,0,1],
+          "hex": "#FF0"
+        }
+      },
+      {
+        "color": "green",
+        "category": "hue",
+        "type": "secondary",
+        "code": {
+          "rgba": [0,255,0,1],
+          "hex": "#0F0"
+        }
+      },
+    ]
 
-  }
 
-  function handleRemoveSkill(id: string){
-    setMySkill(oldState => oldState.filter(
-      skill => skill.id !== id
-    ))
-  }
+  const Item = ({ color }) => (
+    <View>
+      <Text>{color}</Text>
+    </View>
+  );
 
   useEffect(() => {
     const currentHour =  new Date().getHours();
@@ -59,13 +92,25 @@ export function Skills(){
 
   }, [])
 
+  function renderCardCores({item, index}) {
+    return(
+      <View style={{height: 100, alignItems:'center', justifyContent: 'center', width: '90%', marginBottom: 10, backgroundColor: item.color}} >
+        <Text style={{fontSize: 18, fontWeight: 'bold'}}>{item.code.hex}</Text>
+      </View>
+    )
+  }
+
   return (
     <Fragment>
-        <View style={style.container}>
+      <View style={style.container}>
+        <Text style={style.title}>{greetings}, <Text style={{color:'blue'}}>Igor Barros.</Text></Text>
 
-
-
-        </View>
+        <FlatList
+            style={{flex: 1}}
+            data={data}
+            renderItem={renderCardCores}
+        />
+      </View>
     </Fragment>
   )};
 
@@ -74,7 +119,7 @@ const style = StyleSheet.create({
     flex:1,
     backgroundColor: '#121015',
     paddingHorizontal: 20,
-    paddingVertical: 20
+    paddingVertical: 20,
   },
   title: {
     fontSize: 24,

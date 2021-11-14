@@ -8,12 +8,9 @@ import {
   SafeAreaView,
   TextInput,
   Platform,
-  TouchableOpacity,
-  FlatList,
 }from "react-native";
 
 import { Button } from "../components/Button";
-import { SkillCard } from "../components/SkillCard";
 
 interface SkillData {
   id: string;
@@ -21,16 +18,14 @@ interface SkillData {
 }
 
 export function Home(){
-  const [newSkill, setNewSkill] = useState('');
   const [mySkill, setMySkill] = useState<SkillData[]>([]);
-  const [greetings, setGreetings] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const navigation = useNavigation()
 
   function handleAddNewSkill(){
+    navigation.navigate('Skills')
     if(email == "igorbarros@gmail.com" && senha == "123"){
-      navigation.navigate('Skills')
      // Alert.alert("sucesso", "você será redirecionado")
     }else{
       Alert.alert("Error", "Por favor preencha os campos corretamente!")
@@ -54,24 +49,11 @@ export function Home(){
     ))
   }
 
-
-  useEffect(() => {
-    const currentHour =  new Date().getHours();
-
-    if(currentHour < 12){
-     setGreetings('Good morning');
-    }else if(currentHour >= 12 && currentHour < 18 ){
-      setGreetings('Good afternoon');
-    }else{
-      setGreetings('Good night');
-    }
-
-  }, [])
-
   return (
     <Fragment>
         <View style={style.container}>
-          <Text style={style.title}>{greetings}, <Text style={{color:'blue'}}>Igor Barros.</Text></Text>
+
+          <Text style={style.title}>App Estudo Dev</Text>
 
           <TextInput
             style={style.input}
